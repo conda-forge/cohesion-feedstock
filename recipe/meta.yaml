@@ -1,5 +1,5 @@
 {% set name = "cohesion" %}
-{% set version = "1.0.0" %}
+{% set version = "1.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://github.com/mschwager/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: abb5a88b70de96e7dfb65244cc13cff7e9c5edee5333175d5a7668ac7c742c6c
+  sha256: af076ebb63993ba043ea54ae20426ca7a2cc862effd28fd47f7c5b73a6e6fb99
 
 build:
   noarch: python
   number: 0
   entry_points:
     - cohesion = cohesion.__main__:main
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -27,7 +27,7 @@ test:
   commands:
     - pip check
     - cohesion -h
-    - "flake8 --version | grep cohesion"
+    - flake8 --version | grep cohesion
   requires:
     - flake8
     - m2-grep  # [win]
