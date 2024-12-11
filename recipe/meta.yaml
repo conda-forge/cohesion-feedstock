@@ -1,5 +1,5 @@
 {% set name = "cohesion" %}
-{% set version = "1.1.0" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/mschwager/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: af076ebb63993ba043ea54ae20426ca7a2cc862effd28fd47f7c5b73a6e6fb99
+  sha256: 9269549f29a808e5f96d6730cb10c21f854552fda920cae51d8f0cbca6719f7f
 
 build:
   noarch: python
@@ -18,10 +18,11 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
+    - poetry-core
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   commands:
@@ -32,6 +33,7 @@ test:
     - flake8
     - m2-grep  # [win]
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/mschwager/cohesion
